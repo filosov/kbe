@@ -25,5 +25,13 @@
         <file>media/icons/pm-collapse.png</file>
         <file>media/icons/pm-expand.png</file>
         <file>media/icons/pm-add.png</file>
+        <file>media/icons/build_build.png</file>
+        <file>media/icons/output_clear.png</file>
+        <file>media/icons/task_window.png</file>
+        <file>media/icons/extension_add.png</file>
+        <file>media/icons/extension_remove.png</file>
+        <file>media/icons/state_complete.png</file>
+        <file>media/icons/state_delayed.png</file>
+        <file>media/icons/state_working.png</file>
     </qresource>
 </RCC>

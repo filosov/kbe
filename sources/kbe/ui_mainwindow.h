@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Thu 1. May 18:57:02 2014
+** Created: Thu 2. Oct 21:14:59 2014
 **      by: Qt User Interface Compiler version 4.8.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -46,12 +46,21 @@ public:
     QAction *actionOpen_Project;
     QAction *actionSave_Project;
     QAction *actionClose_Project;
+    QAction *actionPreferense;
+    QAction *actionBuild_project;
+    QAction *actionClean_project;
+    QAction *actionRebuild_project;
+    QAction *actionOutput;
+    QAction *actionOutlines;
+    QAction *actionStop_build;
     QWidget *centralWidget;
     QMenuBar *menuBar;
     QMenu *menuFile;
     QMenu *menuExport;
     QMenu *menuHelp;
     QMenu *menuView;
+    QMenu *menuBuild;
+    QMenu *menuInstruments;
     QStatusBar *statusBar;
 
     void setupUi(QMainWindow *MainWindow)
@@ -103,6 +112,20 @@ public:
         actionSave_Project->setObjectName(QString::fromUtf8("actionSave_Project"));
         actionClose_Project = new QAction(MainWindow);
         actionClose_Project->setObjectName(QString::fromUtf8("actionClose_Project"));
+        actionPreferense = new QAction(MainWindow);
+        actionPreferense->setObjectName(QString::fromUtf8("actionPreferense"));
+        actionBuild_project = new QAction(MainWindow);
+        actionBuild_project->setObjectName(QString::fromUtf8("actionBuild_project"));
+        actionClean_project = new QAction(MainWindow);
+        actionClean_project->setObjectName(QString::fromUtf8("actionClean_project"));
+        actionRebuild_project = new QAction(MainWindow);
+        actionRebuild_project->setObjectName(QString::fromUtf8("actionRebuild_project"));
+        actionOutput = new QAction(MainWindow);
+        actionOutput->setObjectName(QString::fromUtf8("actionOutput"));
+        actionOutlines = new QAction(MainWindow);
+        actionOutlines->setObjectName(QString::fromUtf8("actionOutlines"));
+        actionStop_build = new QAction(MainWindow);
+        actionStop_build->setObjectName(QString::fromUtf8("actionStop_build"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         MainWindow->setCentralWidget(centralWidget);
@@ -118,6 +141,10 @@ public:
         menuHelp->setObjectName(QString::fromUtf8("menuHelp"));
         menuView = new QMenu(menuBar);
         menuView->setObjectName(QString::fromUtf8("menuView"));
+        menuBuild = new QMenu(menuBar);
+        menuBuild->setObjectName(QString::fromUtf8("menuBuild"));
+        menuInstruments = new QMenu(menuBar);
+        menuInstruments->setObjectName(QString::fromUtf8("menuInstruments"));
         MainWindow->setMenuBar(menuBar);
         statusBar = new QStatusBar(MainWindow);
         statusBar->setObjectName(QString::fromUtf8("statusBar"));
@@ -125,6 +152,8 @@ public:
 
         menuBar->addAction(menuFile->menuAction());
         menuBar->addAction(menuView->menuAction());
+        menuBar->addAction(menuBuild->menuAction());
+        menuBar->addAction(menuInstruments->menuAction());
         menuBar->addAction(menuHelp->menuAction());
         menuFile->addAction(actionNew);
         menuFile->addAction(actionNew_Project);
@@ -149,7 +178,11 @@ public:
         menuHelp->addAction(actionAbout_Qt);
         menuHelp->addAction(actionFeedback);
         menuHelp->addAction(actionGuide);
-        menuView->addAction(actionView_ProjectManager);
+        menuBuild->addAction(actionBuild_project);
+        menuBuild->addAction(actionClean_project);
+        menuBuild->addAction(actionRebuild_project);
+        menuBuild->addAction(actionStop_build);
+        menuInstruments->addAction(actionPreferense);
 
         retranslateUi(MainWindow);
 
@@ -188,10 +221,22 @@ public:
         actionOpen_Project->setText(QApplication::translate("MainWindow", "Open Project", 0, QApplication::UnicodeUTF8));
         actionSave_Project->setText(QApplication::translate("MainWindow", "Save Project", 0, QApplication::UnicodeUTF8));
         actionClose_Project->setText(QApplication::translate("MainWindow", "Close Project", 0, QApplication::UnicodeUTF8));
+        actionPreferense->setText(QApplication::translate("MainWindow", "Preferense", 0, QApplication::UnicodeUTF8));
+#ifndef QT_NO_TOOLTIP
+        actionPreferense->setToolTip(QApplication::translate("MainWindow", "Application preferense", 0, QApplication::UnicodeUTF8));
+#endif // QT_NO_TOOLTIP
+        actionBuild_project->setText(QApplication::translate("MainWindow", "Build project", 0, QApplication::UnicodeUTF8));
+        actionClean_project->setText(QApplication::translate("MainWindow", "Clean project", 0, QApplication::UnicodeUTF8));
+        actionRebuild_project->setText(QApplication::translate("MainWindow", "Rebuild project", 0, QApplication::UnicodeUTF8));
+        actionOutput->setText(QApplication::translate("MainWindow", "Output", 0, QApplication::UnicodeUTF8));
+        actionOutlines->setText(QApplication::translate("MainWindow", "Outlines", 0, QApplication::UnicodeUTF8));
+        actionStop_build->setText(QApplication::translate("MainWindow", "Stop build", 0, QApplication::UnicodeUTF8));
         menuFile->setTitle(QApplication::translate("MainWindow", "File", 0, QApplication::UnicodeUTF8));
         menuExport->setTitle(QApplication::translate("MainWindow", "Export", 0, QApplication::UnicodeUTF8));
         menuHelp->setTitle(QApplication::translate("MainWindow", "Help", 0, QApplication::UnicodeUTF8));
         menuView->setTitle(QApplication::translate("MainWindow", "View", 0, QApplication::UnicodeUTF8));
+        menuBuild->setTitle(QApplication::translate("MainWindow", "Build", 0, QApplication::UnicodeUTF8));
+        menuInstruments->setTitle(QApplication::translate("MainWindow", "Instruments", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 
 };

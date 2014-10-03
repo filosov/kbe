@@ -26,6 +26,8 @@ QDir Config::pathPlugins = QDir("");
 
 const QString Config::settingsApplicationRoot = "/kbe";
 
+const QString Config::settingsFilePath = "kbe.conf";
+
 const QString Config::settingsRecentFileList = Config::settingsApplicationRoot + "/RecentFileList";
 const QString Config::settingsDocksGeometry = Config::settingsApplicationRoot +"/DockWindowsGeometry";
 const QString Config::settingsMainWindowGeometry = Config::settingsApplicationRoot +"/MainWindowGeometry";

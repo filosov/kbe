@@ -40,7 +40,7 @@ class QUndoGroup;
 class QGraphicsBlurEffect;
 class QKeyEvent;
 class EditorInterface;
-class SCgWindow;
+class PreferenceDialog;
 
 class MainWindow : public QMainWindow,
                    public EditorObserverInterface
@@ -116,7 +116,7 @@ private:
     EditorInterface* createSubWindowByType(const QString& type);
 
     /*!
-     * Create window for specified fiel extension support
+     * Create window for specified file extension support
      * @param ext File extension
      * @return If window created, then return pointer to it. Otherwise it returns null.
      */
@@ -134,6 +134,10 @@ private:
      */
     void saveLayout() const;
 
+    //! Procced configuretion for application preferense dialog
+    void configurePreferenseDialog();
+
+    PreferenceDialog* preferenceDialog() const { return mApplicationPreferenseDialog; }
 private:
     Ui::MainWindow *ui;
 
@@ -174,6 +178,8 @@ private:
     //! Last used directory
     QDir mLastDir;
 
+    //! Dialog for configuration application settings
+    PreferenceDialog *mApplicationPreferenseDialog;
 public slots:
     void updateMenu();
     void updateSpecificViewMenu();
@@ -215,6 +221,9 @@ public slots:
 
     //! Accepts Project Managers events.
     void acceptProjectManagerEvent(ProjectManagerView::eProjectManagerEvent evt);
+
+private slots:
+    void openApplicationPreferense();
 };
 
 #endif // MAINWINDOW_H

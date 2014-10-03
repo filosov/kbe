@@ -4,7 +4,7 @@
 
 DESTDIR = ../bin
 
-QT      += xml
+QT      += xml sql network
 
 TEMPLATE = app
 
@@ -18,7 +18,23 @@ SOURCES += \
     newfiledialog.cpp \
     projectmanagerview.cpp \
     projectmanagermodel.cpp \
-    projectmanagerdockwidget.cpp
+    projectmanagerdockwidget.cpp \
+    preference/preferencedialog.cpp \
+    outputwindow.cpp \
+    preference/buildsettingsfactory.cpp \
+    preference/buildsettingswidget.cpp \
+    vcs/vcsmanager.cpp \
+    rest-client/baserestclient.cpp \
+    sql/querymanager.cpp \
+    rest-client/youtrackrestclient.cpp \
+    preference/trackersettingsfactory.cpp \
+    preference/trackersettingswidget.cpp \
+    vcs/vcsinterface.cpp \
+    taskmanager.cpp \
+    taskwindow.cpp \
+    projectbuilder.cpp \
+    application.cpp \
+    taskview.cpp
 
 HEADERS += version.h \
     platform.h \
@@ -32,7 +48,36 @@ HEADERS += version.h \
     newfiledialog.h \
     projectmanagerview.h \
     projectmanagermodel.h \
-    projectmanagerdockwidget.h
+    projectmanagerdockwidget.h \
+    preference/preferencedialog.h \
+    preference/abstractsettingswidgetfactory.h \
+    outputwindow.h \
+    preference/buildsettingsfactory.h \
+    preference/buildsettingswidget.h \
+    vcs/vcsinterface.hpp \
+    vcs/vcsauthinterface.hpp \
+    vcs/vcstransactioninterface.hpp \
+    vcs/vcspropertyinterface.hpp \
+    vcs/vcsfilestateinterface.hpp \
+    vcs/vcsmanager.hpp \
+    vcs/VCSBranchInterface.hpp \
+    rest-client/baserestclient.hpp \
+    rest-client/issue.hpp \
+    rest-client/milestone.hpp \
+    rest-client/project.hpp \
+    sql/querymanager.hpp \
+    rest-client/youtrackrestclient.hpp \
+    preference/trackersettingsfactory.hpp \
+    preference/trackersettingswidget.hpp \
+    preference/abstractsettingswidget.hpp \
+    rest-client/restitem.hpp \
+    taskmanager.hpp \
+    taskwindow.h \
+    projectbuilder.hpp \
+    application.hpp \
+    taskview.hpp
+
+INCLUDEPATH += preference
 
 FORMS += mainwindow.ui
 

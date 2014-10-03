@@ -25,8 +25,8 @@ along with OSTIS.  If not, see <http://www.gnu.org/licenses/>.
 #include "platform.h"
 #include "mainwindow.h"
 #include "guidedialog.h"
+#include "application.hpp"
 
-#include <QtGui/QApplication>
 #include <QTranslator>
 #include <QLocale>
 #include <QTextCodec>
@@ -38,10 +38,9 @@ along with OSTIS.  If not, see <http://www.gnu.org/licenses/>.
 #include <QDebug>
 #include <QSettings>
 
-
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
+    Application a(argc, argv);
 
     a.setOrganizationName("OSTIS");
     a.setOrganizationDomain("ostis.net");

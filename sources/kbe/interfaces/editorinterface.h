@@ -134,7 +134,7 @@ public:
     //! Return list of supported for save format extensions
     virtual QStringList supportedFormatsExt() const = 0;
 
-    /*! Emit eritor event to observer
+    /*! Emit editor event to observer
       * @param event Event code @see EditorObserverInterface::EditEvents
       */
     virtual void emitEvent(EditorObserverInterface::EditEvents event) { if (mObserver != 0) mObserver->updateEvent(this, event); }

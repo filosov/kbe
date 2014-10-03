@@ -21,6 +21,7 @@ along with OSTIS.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "projectmanagermodel.h"
+#include "application.hpp"
 
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>
@@ -207,6 +208,8 @@ void ProjectManagerModel::loadProject(QString filePath)
                 QString shownName = rStream.attributes().value(TAG_ATTR_NAME).toString();
                 QString fileName = proFile.fileName();
 
+                qApp->addSettings("ProjectFile", fileName);
+
                 if (mRootItem->findChild<ProjectManagerModelItem*>(shownName))
                     return;
 
@@ -258,6 +261,7 @@ void ProjectManagerModel::saveProject(ProjectManagerModelItem *project, QString 
         proFile.close();
 
         project->setModified(false);
+        qApp->addSettings("ProjectFile", filePath);
     }
 }
 

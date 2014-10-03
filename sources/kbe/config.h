@@ -32,6 +32,8 @@ public:
     //! path to plugins
     static QDir pathPlugins;
 
+    static const QString settingsFilePath;
+
     /*! @defgroup settingNames Names For Saving Application Parameters
      *  @note Used with QSettings.
      *  @{

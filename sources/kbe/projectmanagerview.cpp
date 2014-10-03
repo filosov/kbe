@@ -22,6 +22,7 @@ along with OSTIS.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "projectmanagerview.h"
 #include "projectmanagermodel.h"
+#include "application.hpp"
 
 #include "pluginmanager.h"
 #include "newfiledialog.h"
@@ -277,6 +278,7 @@ void ProjectManagerView::onProjectSave()
 bool ProjectManagerView::onProjectClose()
 {
     if (ProjectManagerModelItem* rootItem = mModel->getRootItem())
+    {
         while (rootItem->childCount())
         {
             ProjectManagerModelItem* item = rootItem->child(0);
@@ -312,6 +314,8 @@ bool ProjectManagerView::onProjectClose()
             }
             mModel->removeItem(item);
         }
+        qApp->addSettings("ProjectFile", "");
+    }
     emit event(ProjectClosed);
     return true;
 }

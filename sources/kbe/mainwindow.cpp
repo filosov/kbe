@@ -30,6 +30,14 @@ along with OSTIS.  If not, see <http://www.gnu.org/licenses/>.
 #include "guidedialog.h"
 #include "newfiledialog.h"
 
+#include "preferencedialog.h"
+#include "buildsettingsfactory.h"
+#include "trackersettingsfactory.hpp"
+#include "taskwindow.h"
+#include "outputwindow.h"
+#include "projectbuilder.hpp"
+#include "taskmanager.hpp"
+
 #include "version.h"
 
 #include <QMdiSubWindow>
@@ -89,7 +97,6 @@ MainWindow::MainWindow(QWidget *parent) :
                 this, SLOT(acceptProjectManagerEvent(ProjectManagerView::eProjectManagerEvent)));
     }
 
-
     setCentralWidget(mTabWidget);
 
     connect(mTabWidget, SIGNAL(currentChanged(int)),
@@ -122,8 +129,25 @@ MainWindow::MainWindow(QWidget *parent) :
     restoreGeometry(settings.value(Config::settingsMainWindowGeometry).toByteArray());
 
     setAcceptDrops(true);
-}
 
+    mApplicationPreferenseDialog = new PreferenceDialog;
+    configurePreferenseDialog();
+
+    QDockWidget *dock = new QDockWidget;
+    OutputWindow *log = ProjectBuilder::getInstance()->outputLogWindow();
+    dock->setObjectName(log->metaObject()->className());
+    dock->setWidget(log);
+    dock->setWindowTitle(log->windowTitle());
+    ui->menuView->addAction(dock->toggleViewAction());
+    addDockWidget(Qt::BottomDockWidgetArea, dock);
+    TaskWindow *tasks = TaskManager::getInstance()->taskWindow();
+    dock = new QDockWidget;
+    dock->setObjectName(tasks->metaObject()->className());
+    dock->setWidget(tasks);
+    dock->setWindowTitle(tasks->windowTitle());
+    ui->menuView->addAction(dock->toggleViewAction());
+    addDockWidget(Qt::RightDockWidgetArea, dock);
+}
 
 MainWindow::~MainWindow()
 {
@@ -132,7 +156,8 @@ MainWindow::~MainWindow()
     delete mToolBarEdit;
     delete ui;
     delete mTabWidget;
-
+    mApplicationPreferenseDialog->unregisterAllFactories();
+    delete mApplicationPreferenseDialog;
 //    ReadWriteManager::destroy();
 //    LayoutManager::destroy();
 
@@ -212,6 +237,13 @@ void MainWindow::createActions()
     connect(ui->actionAbout_Qt, SIGNAL(triggered()), this, SLOT(helpAboutQt()));
     connect(ui->actionFeedback, SIGNAL(triggered()), this, SLOT(feedback()));
     connect(ui->actionGuide, SIGNAL(triggered()), this, SLOT(guide()));
+
+    ProjectBuilder *builder = ProjectBuilder::getInstance();
+    connect(ui->actionPreferense, SIGNAL(triggered()), this, SLOT(openApplicationPreferense()));
+    connect(ui->actionBuild_project, SIGNAL(triggered()), builder, SLOT(build()));
+    connect(ui->actionRebuild_project, SIGNAL(triggered()), builder, SLOT(rebuild()));
+    connect(ui->actionClean_project, SIGNAL(triggered()), builder, SLOT(clean()));
+    connect(ui->actionClean_project, SIGNAL(triggered()), builder, SLOT(stop()));
 }
 
 void MainWindow::updateEvent(EditorInterface *editor, EditEvents event)
@@ -794,6 +826,13 @@ void MainWindow::saveLayout() const
     }
 }
 
+void MainWindow::configurePreferenseDialog()
+{
+    mApplicationPreferenseDialog->registerSettingsFactory(new BuildSettingsFactory);
+    mApplicationPreferenseDialog->registerSettingsFactory(new TrackerSettingsFactory);
+    mApplicationPreferenseDialog->configureDialog();
+}
+
 void MainWindow::closeEvent(QCloseEvent *event)
 {
     // close all child windows
@@ -870,4 +909,9 @@ void MainWindow::dropEvent(QDropEvent *event)
             load(fileName);
     }
     event->acceptProposedAction();
+}
+
+void MainWindow::openApplicationPreferense()
+{
+    mApplicationPreferenseDialog->exec();
 }
